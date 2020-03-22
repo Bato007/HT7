@@ -1,5 +1,5 @@
-import javax.swing.tree.TreeCellRenderer;
-import java.util.Comparator;
+import java.util.ArrayList;
+
 /**
  * @author Brandon Hernández 19376
  * @since 21/03/2020
@@ -16,6 +16,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     // La raiz del arbol binario
     private TreeNode<E> root;
+    private ArrayList<E> inOrder = new ArrayList<>();
 
     /**
      * Constructor del arbol
@@ -73,11 +74,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * @return el dato que tiene el nodo
      */
     public E findValue(E searchValue){
-        TreeNode<E> aux = root;
+        TreeNode<E> aux = this.root;
 
-        while (searchValue.compareTo(aux.getData()) != 0){
+        while (aux.getData() != searchValue){
 
-            if(searchValue.compareTo(aux.getData()) != 0){
+            if(searchValue.compareTo(aux.getData()) > 0){
                 aux = aux.getLeftSon();
             }else {
                 aux = aux.getRightSon();
@@ -86,8 +87,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
             if(aux == null){
                 return null;
             }
-
         }
+
         return aux.getData();
     }
 
@@ -97,14 +98,28 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * @param node el nodo de arbol que quiere ser conseguido
      * @return todos los datos del arbol
      */
-    public String inOrder(TreeNode<E> node){
-        String inOrder = "";
+    public void inOrder(TreeNode<E> node){
         if( node != null){
             inOrder(node.getLeftSon());
-            inOrder += " " + node.getData().toString();
+            inOrder.add(node.getData());
             inOrder(node.getRightSon());
         }
-        return inOrder;
     }
 
+    /**
+     * Se encarga de eliminar los datos del arraylist
+     * @pos tamaño del arraylist es 0
+     */
+    public void refresh(){
+        inOrder.clear();
+    }
+
+    // GETTER
+    public TreeNode<E> getRoot() {
+        return root;
+    }
+
+    public ArrayList<E> getInOrder() {
+        return inOrder;
+    }
 }
