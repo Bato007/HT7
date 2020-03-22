@@ -3,6 +3,9 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args){
+        BinarySearchTree<ComparableAssociation<String, String>>  tree = new BinarySearchTree<>();
+
+
         String[] line;
         String readTxt;
 
@@ -21,5 +24,9 @@ public class Main {
             System.out.println("Did do");
         }
     }
+
+
+
+
 
 }
