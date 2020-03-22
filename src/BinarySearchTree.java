@@ -78,13 +78,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
         while (aux.getData() != searchValue){
 
-            if(searchValue.compareTo(aux.getData()) > 0){
+            if(searchValue.compareTo(aux.getData()) < 0){
                 aux = aux.getLeftSon();
-            }else {
-                aux = aux.getRightSon();
-            }
+            }else aux = aux.getRightSon();
 
-            if(aux == null){
+            if(null == aux){
                 return null;
             }
         }
@@ -96,7 +94,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * Se recorre el arbol en order
      * @pos se obtienen los datos en orden del arbol
      * @param node el nodo de arbol que quiere ser conseguido
-     * @return todos los datos del arbol
      */
     public void inOrder(TreeNode<E> node){
         if( node != null){
@@ -104,14 +101,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
             inOrder.add(node.getData());
             inOrder(node.getRightSon());
         }
-    }
-
-    /**
-     * Se encarga de eliminar los datos del arraylist
-     * @pos tamaño del arraylist es 0
-     */
-    public void refresh(){
-        inOrder.clear();
     }
 
     // GETTER

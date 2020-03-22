@@ -1,6 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-
+/**
+ * @author Brandon Hernández 19376
+ * @since 21/03/2020
+ * @version 21/03/2020
+ *
+ * Ejecuta el programa
+ */
 public class Main {
 
     public static void main(String[] args){
@@ -37,7 +43,7 @@ public class Main {
         for(int i = 0; i < tree.getInOrder().size(); i++){
             System.out.println("| " + tree.getInOrder().get(i).getKey() + " - "+ tree.getInOrder().get(i).getValue());
         }
-        tree.refresh();
+
         System.out.println("| \n| Se han guardado en el diccionario");
 
         // Se lee la linea de traduccion
@@ -57,6 +63,14 @@ public class Main {
 
         for (int i = 0; i < words.length; i++){
              aux = tree.findValue(new ComparableAssociation<>(words[i].toLowerCase()));
+            for(int j = 0; j < tree.getInOrder().size(); j++){
+                if(tree.getInOrder().get(j).getKey().equals(words[i])){
+                    aux = tree.getInOrder().get(j);
+                    break;
+                } else {
+                    aux = null;
+                }
+            }
 
             if(aux != null){
                 System.out.print(aux.getValue() + " ");
